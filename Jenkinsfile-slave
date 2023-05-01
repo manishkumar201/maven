@@ -10,7 +10,7 @@ pipeline{
         stage ("pulling image from dockerhub & deploying it"){
             steps
             {
-                sh 'docker run -d -p 8070:8070 --name maven officialmanishkr98/maven:latest'
+                sh 'docker run -d -p 80:8070 --name maven officialmanishkr98/maven:latest'
             }
         }
     }
