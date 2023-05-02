@@ -4,6 +4,7 @@ pipeline
     environment
     {
         DOCKERHUB_CRED = credentials('dockerCred')
+        GITHUB_CRED = "gitCred"
     }
     stages
     {
@@ -12,7 +13,7 @@ pipeline
       {
           steps
           {
-              checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/manishkumar201/maven.git']])
+              git branch: 'manish', credentialsId: env.GITHUB_CRED , url: "https://github.com/imp-ress-ico/sandbox.git"
           }
          
       }
