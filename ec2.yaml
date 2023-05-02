@@ -1,0 +1,21 @@
+
+Resources:
+  CFMmaven:
+    Type: AWS::EC2::Instance
+    Properties:
+      AvailabilityZone: us-east-1a
+      InstanceType: t3.medium
+      ImageId: ami-007855ac798b5175e
+      KeyName: manishImpressico-KP
+      SecurityGroups:
+       - manishImpressico-SG
+      Tags:
+        - Key: Name
+          Value: docker-maven
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          git clone https://github.com/manishkumar201/files.git
+          cd ./files
+          bash installJenkins.txt
+          bash installDocker
