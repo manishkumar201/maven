@@ -20,8 +20,8 @@ jobs:
 
       - name: Push to DockerHub 
         run: |
-          # echo $DOCKERHUB_PASS | docker login -u $DOCKERHUB_USR --password-stdin
-          docker login -u $DOCKERHUB_USR -p $DOCKERHUB_PASS
+          echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USR" --password-stdin
+          # docker login -u $DOCKERHUB_USR -p $DOCKERHUB_PASS
           docker build -t officialmanishkr98/maven .
           docker push officialmanishkr98/maven
           echo "done"
