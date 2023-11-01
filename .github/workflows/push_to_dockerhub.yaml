@@ -16,15 +16,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Login to Docker Hub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKERHUB_USR }}
-          password: ${{ secrets.DOCKERHUB_PASS }}
+      # - name: Login to Docker Hub
+      #   uses: docker/login-action@v1
+      #   with:
+      #     username: ${{ secrets.DOCKERHUB_USR }}
+      #     password: ${{ secrets.DOCKERHUB_PASS }}
           
       - name: Push to DockerHub 
         run: |
-          docker build -t officialmanishkr98/maven .
-          docker push officialmanishkr98/maven
-          echo "done"
+          curl -X POST -H "Content-Type: application/json" -d '{"text" : "Randome message from CURL frm github actions"}' 'https://chat.googleapis.com/v1/spaces/AAAAN3kpaY0/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=LkHQdZXVT4yN2IQj7kjSrcH1z4JLZt9e7_IDQBlXjlY'
 
