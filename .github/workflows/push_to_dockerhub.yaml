@@ -1,8 +1,8 @@
-name: Docker Hello World
+name: Push to DockerHub 
 
 on:
   workflow_dispatch:
-  
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -11,7 +11,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Run Docker Hello World
+      - name: Push to DockerHub 
         run: |
+          ls ./
           docker run hello-world
 
