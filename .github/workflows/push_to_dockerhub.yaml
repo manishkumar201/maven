@@ -19,6 +19,8 @@ jobs:
 
       - name: testing
         run: |
+          TEST="test variable"
+          echo $TEST
           echo $DOCKERHUB_USR
           echo ${{ secrets.DOCKERHUB_USR }}
 
