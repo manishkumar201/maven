@@ -1,52 +1,38 @@
-pipeline
-{
+pipeline {
     agent any
-    environment
-    {
+    environment {
         DOCKERHUB_CRED = credentials('dockerCred')
         GITHUB_CRED = "gitCred"
     }
-    stages
-    {
-     
-      stage ('cloning from git')
-      {
-          steps
-          {
-              git branch: 'manish', credentialsId: env.GITHUB_CRED , url: "https://github.com/imp-ress-ico/sandbox.git"
-          }
-         
-      }
-      stage('building jar file')
-      {
-          steps
-          {
-              sh 'mvn clean install'
-          }
-      }
-      stage( 'building docker image with dockerfile')
-      {
-          steps
-          {
-              sh 'docker build -t officialmanishkr98/maven:latest .'
-          }
-      }
-      
-      stage('login in to dockerhub')
-      {
-          steps
-          {
-              sh 'echo $DOCKERHUB_CRED'
-              sh 'echo $DOCKERHUB_CRED_PSW | docker login -u $DOCKERHUB_CRED_USR --password-stdin'
-          }
-      }
-        
-      stage('pushing image to dockerhub') 
-      {
-          steps
-          {
-              sh 'docker push officialmanishkr98/maven:latest'
-          }
-      }
+    stages {
+        stage ('cloning from git') {
+            steps {
+                git branch: 'manish', credentialsId: env.GITHUB_CRED , url: "https://github.com/imp-ress-ico/sandbox.git"
+            }
+        }
+
+        stage( 'building docker image with dockerfile') {
+            steps {
+                sh 'docker build -t officialmanishkr98/maven:latest .'
+            }
+        }
+
+        stage('login in to dockerhub') {
+            steps {
+                sh 'echo $DOCKERHUB_CRED_PSW | docker login -u $DOCKERHUB_CRED_USR --password-stdin'
+            }
+        }
+
+        stage('pushing image to dockerhub') {
+            steps {
+                sh 'docker push officialmanishkr98/maven:latest'
+            }
+        }
+
+        stage('logout from dockerhub') {
+            steps {
+                sh 'docker logout'
+            }
+        }
     }
 }
