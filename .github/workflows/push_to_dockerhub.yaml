@@ -5,6 +5,11 @@ on:
 # on:
 #   workflow_dispatch:
 
+env:
+  DOCKERHUB_USR: officialmanishkr98/maven
+  DOCKERHUB_PASS:  ${{ secrets.DOCKERHUB_PASS }}
+  # DOCKERHUB_PASS: ${{ secrets.DOCKERHUB_TOKEN }}
+  # DOCKER_IMAGE: officialmanishkr98/maven
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,6 +20,8 @@ jobs:
 
       - name: Push to DockerHub 
         run: |
-          ls ./
-          docker run hello-world
+          docker login -u $DOCKERHUB_USR -p $DOCKERHUB_PASS
+          docker build -t officialmanishkr98/maven .
+          docker push officialmanishkr98/maven
+          echo "done"
 
