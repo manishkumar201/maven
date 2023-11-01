@@ -20,7 +20,9 @@ jobs:
         env:
           DOCKERHUB_USR: ${{ secrets.DOCKERHUB_USR }}
           DOCKERHUB_PASS:  ${{ secrets.DOCKERHUB_PASS }}
-        run: echo "$DOCKERHUB_PASS" | docker login -u $DOCKERHUB_USR --password-stdin
+        run: |
+          export DOCKER_BUILDKIT=1
+          echo "$DOCKERHUB_PASS" | docker login -u $DOCKERHUB_USR --password-stdin
           
       - name: Push to DockerHub 
         run: |
