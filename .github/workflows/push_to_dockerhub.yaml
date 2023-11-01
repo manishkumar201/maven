@@ -24,5 +24,5 @@ jobs:
           
       - name: Push to DockerHub 
         run: |
-          curl -X POST -H "Content-Type: application/json" -d '{"text" : "Randome message from CURL frm github actions"}' 'https://chat.googleapis.com/v1/spaces/AAAAN3kpaY0/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=LkHQdZXVT4yN2IQj7kjSrcH1z4JLZt9e7_IDQBlXjlY'
+          curl -X POST -H "Content-Type: application/json" -d '{"text" : "Randome message from CURL frm github actions using secrets"}' '${{ secrets.GSPACE }}'
 
