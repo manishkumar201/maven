@@ -1,0 +1,20 @@
+name: Push to DockerHub 
+
+on:
+  workflow_dispatch:
+
+env:
+  GSPACE_API: ${{ secrets.GSPACE }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+          
+      - name: Push to DockerHub 
+        run: |
+          curl -X POST -H "Content-Type: application/json" -d '{"text" : "Randome message from CURL frm github actions using secrets"}' '$GSPACE_API'
+
