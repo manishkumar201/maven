@@ -1,4 +1,4 @@
-name: Push to DockerHub 
+name: GSPACE Inregration
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ env:
   GSPACE_API: ${{ secrets.GSPACE }}
 
 jobs:
-  build:
+  GSpace_API_Call:
     runs-on: ubuntu-latest
 
     steps:
